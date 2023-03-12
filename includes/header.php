@@ -61,21 +61,14 @@
 
 <script>
 
-// $('#myText').on('input', function() {
-//   if ($('#myText').val().length > 0) {
-//     $('#forwarded-btn').prop('disabled', false);
-//   } else {
-//     $('#forwarded-btn').prop('disabled', true);
-//   }
-// });
-
 
 function copyToClipboard() {
   var copyText = document.getElementById("myText");
   copyText.select();
   document.execCommand("copy");
   $('#forwarded-btn').prop('disabled', false);
-  // console.log("before");  
+  alertify.set('notifier','position', 'bottom-center');
+  alertify.success('Mail ID Copied!');
 
 }
 
@@ -83,13 +76,13 @@ function copyToClipboard() {
       // Send verification request and display message
       $(document).ready(function() {
   $('#forwarded-btn').click(function() {
-    $('#verification-message').text('Verifying...');
+    $('#verification-message').text('Please keep this page open and allow 1-2 mins to TakeMyTickets to verify your tickets');
     $.ajax({
       url: 'verify.php',
       dataType: 'json',
       success: function(response) {
         if (response.status === 'success') {
-          $('#verification-message').text('Verification successful!');
+          $('#verification-message').text('Successfully Verified');
           $.get('booking.php', function() {
           });
         } else {

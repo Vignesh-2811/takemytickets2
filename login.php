@@ -34,7 +34,6 @@ include "includes/header.php";
                     <div class="col-12">
                       <label for="youremail" class="form-label">Email</label>
                       <div class="input-group has-validation">
-                        <!-- <span class="input-group-text" id="inputGroupPrepend">@</span> -->
                         <input type="text" name="email" class="form-control" id="youremail" required>
                         <div class="invalid-feedback">Please enter your email.</div>
                       </div>
@@ -46,12 +45,6 @@ include "includes/header.php";
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
-                    <!-- <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                      </div>
-                    </div> -->
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit" name="login_btn">Login</button>
                     </div>

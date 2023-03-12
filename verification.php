@@ -3,24 +3,6 @@ include "config/connection.php";
 include "includes/header.php";
 include "functions/myfunctions.php";
 ?>
-<!-- <style>
-    .input-container {
-  position: relative;
-}
-
-.input-container input[type="text"] {
-  padding-right: 40px; /* Add space for the button */
-}
-
-.input-container button {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-} -->
-
-
-
 <style>
   
 .input-group-append {
@@ -48,7 +30,6 @@ include "functions/myfunctions.php";
                     <p style = "opacity: 0.7">TakeMyTickets need to verify your ticket purchase. Make sure you forward the tickets from the mail ID you used to sign-up</p>
                   </div>
 
-                  <!-- <form class="row g-3 needs-validation" action = "functions/authcode.php" method = "POST"> -->
 
                     <div class="col-12">
                       <label for="yourevent" class="form-label"><i class="fa-thin fa-circle-1"></i>1. Copy our email address</label>
@@ -70,9 +51,8 @@ include "functions/myfunctions.php";
                     </div>
 
                     <div class="col-12">
-                       <label for="verification-message" class = "form-label mt-3">3. Wait for verification</label>
-                       <div id="verification-message">Please wait for verification......</div>
-                       <!-- <div id="loader" style="display:none;"></div> -->
+                       <label for="verification-message" class = "form-label mt-3">3. Verification</label>
+                       <div id="verification-message" class = "form-label mt-3"></div>
                     </div>
 
                     </div>

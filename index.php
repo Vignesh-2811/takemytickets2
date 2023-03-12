@@ -24,7 +24,6 @@ include "functions/myfunctions.php";
 
                     <div class="col-12">
                       <label for="yourevent" class="form-label">Which event do you want to sell tickets for?</label>
-                        <!-- <option selected>Select Event</option> -->
                         <select name="event_id" id="" class="form-select mb-2" required>
                         <?php
                             $events = getAll("venues");

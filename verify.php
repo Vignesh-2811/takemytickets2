@@ -4,12 +4,9 @@ include "config/connection.php";
 session_start();
 $email = $_SESSION['email'];
 
-
-// $email = "shakthivignesh2002@gmail.com";
 $command = escapeshellcmd('python3 main.py ' . $email);
 $output = shell_exec($command);
 $ticket_info = json_decode($output, true);
-// print_r ($ticket_info);
 
 
 $from = $ticket_info['from'];
@@ -43,14 +40,14 @@ if(mysqli_num_rows($check_booking_id_query_run) > 0)
 if ($ticket_info['from'] != 'tickets@bookmyshow.email') {
 
     $response['status'] = 'error';
-    $response['message'] = $ticket_info['to'];
+    $response['message'] = "Please list a valid ticket";
 
 } else if($ticket_info['to'] != $email) {
 
     $response['status'] = 'error';
-    $response['message'] = $ticket_info['to'];
+    $response['message'] = "Login / Signup with the to email address in the email";
 
-} else if ($ticket_info['quantity'] < 2) {
+} else if ($ticket_info['quantity'] < $quantity) {
 
     $response['status'] = 'error';
     $response['message'] = "Mismatch in ticket quantity";
@@ -63,16 +60,9 @@ if ($ticket_info['from'] != 'tickets@bookmyshow.email') {
 }else {
 
     $response['status'] = 'success';
-    // $insert_query = "INSERT INTO tickets(ticketowner, bookingid, venue, category, quantity, amountpaid) VALUES ('rg', '5641', 'adfg', 'gdffg', '5', '1.0')";
-    // $insert_query_run = mysqli_query($conn,$insert_query);
-    // print_r($insert_query);
 
 }
 
-// if ($response['status'] = 'success'){
-//     $insert_query = "INSERT INTO tickets(ticketowner, bookingid, venue, category, quantity, amountpaid) VALUES ('$to', '$booking_id', '$venue', '$category', '$quantity', '$amount_paid')";
-//     $insert_query_run = mysqli_query($conn,$insert_query);
-// }
 
 // send response as JSON
 header('Content-Type: application/json');

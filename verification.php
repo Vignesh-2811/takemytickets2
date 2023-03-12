@@ -19,15 +19,10 @@ include "functions/myfunctions.php";
   height: 100%;
 } -->
 
-<script>
-function copyToClipboard() {
-  var copyText = document.getElementById("myText");
-  copyText.select();
-  document.execCommand("copy");
-}
-</script>
+
 
 <style>
+  
 .input-group-append {
   position: absolute;
   right: 0;
@@ -56,44 +51,34 @@ function copyToClipboard() {
                   <!-- <form class="row g-3 needs-validation" action = "functions/authcode.php" method = "POST"> -->
 
                     <div class="col-12">
-                      <label for="yourevent" class="form-label"><i class="fa-thin fa-circle-1"></i>Copy our email address</label>
-                        <!-- <a href="#"><i class="fa-thin fa-circle-1"></i></a> -->
-                      <!-- <input type="text"> -->
+                      <label for="yourevent" class="form-label"><i class="fa-thin fa-circle-1"></i>1. Copy our email address</label>
                       <div class="input-group">
-                        <input type="text" id="myText" class="form-control" value="init8055@gmail.com" disabled>
+                        <input type="text" id="myText" class="form-control" value="init8055@gmail.com" readonly>
                         <div class="input-group-append">
                           <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard()">
                             <i class="fa fa-copy"></i>
                           </button>
-                        </div>
+                          </div>
                       </div>
                       
                     </div>
 
                     <div class="col-12">
-                        <label for="tickets" class = "form-label">How many tickets do you want to sell?</label>
-                        <select name="tickets" id="" class = "form-select mb-2" required>
-                            <option value="1">1 ticket</option>
-                            <option value="2">2 tickets</option>
-                            <option value="3">3 tickets</option>
-                            <option value="4">4 tickets</option>
-                            <option value="5">5 tickets</option>
-                    </select>
+                        <label for="ticketconfirm" class = "form-label mt-3">2. Forward your ticket confirmation email</label>
+                        <button class = "btn btn-outline-dark" id="forwarded-btn"  type = "button" disabled>I've forwarded my tickets</button>
+
                     </div>
 
                     <div class="col-12">
-                        <label for="category" class = "form-label">What's the ticket type?</label>
-                        <select name="type" id="" class = "form-select mb-2" required>
-                            <option value="bronze">Bronze</option>
-                            <option value="gold">Gold</option>
-                            <option value="elite">Elite</option>
-                    </select>
+                       <label for="verification-message" class = "form-label mt-3">3. Wait for verification</label>
+                       <div id="verification-message">Please wait for verification......</div>
+                       <!-- <div id="loader" style="display:none;"></div> -->
                     </div>
 
                     </div>
                    
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit" name="continue_btn">Continue</button>
+                      <button class="btn btn-primary w-100" type="submit" name="continue_btn" disabled>Continue</button>
                     </div>
                    
                   </form>

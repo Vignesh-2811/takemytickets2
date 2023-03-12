@@ -69,6 +69,7 @@ else if(isset($_POST['login_btn']))
         $userid = $userdata['id'];
         $useremail = $userdata['email'];
         $role_as = $userdata['role_as'];
+        $_SESSION['email'] = $email;
 
         $_SESSION['auth_user'] = [
             'user_id' => $userid,
@@ -92,11 +93,15 @@ else if(isset($_POST['continue_btn'])){
     $tickets = mysqli_real_escape_string($conn, $_POST['tickets']);
     $type = mysqli_real_escape_string($conn, $_POST['type']);
 
+    $_SESSION['venue'] = $venue;
+    $_SESSION['tickets'] = $tickets;
+    $_SESSION['type'] = $type;
     // echo $venue; die;
     
     $insert_query = "INSERT INTO templisting(event, tickets, type) VALUES('$venue', '$tickets', '$type')";
     $insert_query_run=mysqli_query($conn,$insert_query);
     // print_r($insert_query);die;
+    
 
     if($insert_query_run)
     {

@@ -2,6 +2,8 @@ import os
 import imaplib
 import email
 import yaml
+import sys
+import json
 
 with open("credentials.yml") as f:
     content = f.read()
@@ -19,10 +21,11 @@ my_mail.login(user, password)
 my_mail.select('Inbox')
 
 key = 'FROM'
-value = 'shakthivignesh2002@gmail.com'
+value = sys.argv[1] 
+# value = "shakthivignesh2002@gmail.com"
 _, data = my_mail.search(None, key, value)
 
-mail_id_list = data[0].split()
+mail_id_list = data[0].split()[-10:]
 
 if mail_id_list:
     latest_mail_id = mail_id_list[-1]
@@ -34,15 +37,17 @@ if mail_id_list:
     if payload.get_content_type() == "text/plain":
         body = payload.get_payload(decode=True).decode("utf-8")
         lines = body.strip().split("\n")
+        # for line in lines:
+            # print(line)
 
         # create an empty dictionary
         ticket_info = {}
 
         for line in lines:
-            if line.lower().startswith("> from:"):
-                email_address = line.strip().split("<")[-1].strip(">")
-                ticket_info['from'] = email_address
-
+            if "From: BookMyShow <tickets@bookmyshow.email>" in line:
+                ticket_info['from'] = "tickets@bookmyshow.email"
+        
+                
         for line in lines:
             if line.lower().startswith("> to:"):
                 to_address = line.strip().split("<")[-1].strip(">")
@@ -50,26 +55,38 @@ if mail_id_list:
 
         for i, line in enumerate(lines):
             if "BOOKING ID:" in line:
-                ticket_info['booking_id'] = lines[i+1].strip()
+                booking_line = lines[i+1].strip()
+                # booking = booking_line.split('>')[1]
+                ticket_info['booking_id'] = booking_line
+                # print(booking_line)
 
         for i, line in enumerate(lines):
             if "Venue" in line:
-                ticket_info['venue'] = lines[i-1].strip()
+                venue_line = lines[i-1].strip()
+                # venue = venue_line.split('> ')[1]
+                ticket_info['venue'] = venue_line
 
         for i, line in enumerate(lines):
             if "Category" in line:
-                ticket_info['category'] = lines[i+1].strip()
+                category_line = lines[i+1].strip()
+                # category = category_line.split('> ')[1]
+                ticket_info['category'] = category_line
 
         for i, line in enumerate(lines):
             if "Quantity" in line:
-                ticket_info['quantity'] = lines[i+2].strip()
+                quantity_line = lines[i+2].strip()
+                # quantity = quantity_line.split('> ')[1]
+                ticket_info['quantity'] = quantity_line
 
         for i, line in enumerate(lines):
             if "Total amount paid" in line:
-                ticket_info['amount_paid'] = lines[i].strip()
+                amount_paid_line = lines[i].strip()
+                # amount_paid = amount_paid_line.split('₹')[1] 
+                ticket_info['amount_paid'] = amount_paid_line
 
-        # print the dictionary
-        print(ticket_info)
+        # # print the dictionary
+        # print(ticket_info)
+        # print(json.dumps(ticket_info))
 
 else:
     print("No emails found from", value)

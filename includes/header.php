@@ -35,10 +35,15 @@
   <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 
+
 <!-- FA Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-5h5H8W5t5cGjK9Qqlh7JTF8xC+GzLZ0xx+2yaybVUjxE6h65JvI+9fZap7TGZmH6UJmV83x/hD3y4+bJ/VF6pA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- jquery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="assets/js/verify.js"></script>
 
 
 <style>
@@ -53,6 +58,55 @@
     }
 
   </style>
+
+<script>
+
+// $('#myText').on('input', function() {
+//   if ($('#myText').val().length > 0) {
+//     $('#forwarded-btn').prop('disabled', false);
+//   } else {
+//     $('#forwarded-btn').prop('disabled', true);
+//   }
+// });
+
+
+function copyToClipboard() {
+  var copyText = document.getElementById("myText");
+  copyText.select();
+  document.execCommand("copy");
+  $('#forwarded-btn').prop('disabled', false);
+  // console.log("before");  
+
+}
+
+      
+      // Send verification request and display message
+      $(document).ready(function() {
+  $('#forwarded-btn').click(function() {
+    $('#verification-message').text('Verifying...');
+    $.ajax({
+      url: 'verify.php',
+      dataType: 'json',
+      success: function(response) {
+        if (response.status === 'success') {
+          $('#verification-message').text('Verification successful!');
+        } else {
+          $('#verification-message').text('Verification failed: ' + response.message);
+        }
+      },
+      error: function() {
+        $('#verification-message').text('Verification failed.');
+      },
+      complete: function() {
+        $('#loader').hide();
+      }
+    });
+  });
+});
+
+
+
+</script>
 </head>
 
 <body>

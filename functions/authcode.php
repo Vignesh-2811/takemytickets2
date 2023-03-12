@@ -98,7 +98,7 @@ else if(isset($_POST['continue_btn'])){
     $_SESSION['type'] = $type;
     // echo $venue; die;
     
-    $insert_query = "INSERT INTO templisting(event, tickets, type) VALUES('$venue', '$tickets', '$type')";
+    $insert_query = "INSERT INTO templisting(venue, tickets, type) VALUES('$venue', '$tickets', '$type')";
     $insert_query_run=mysqli_query($conn,$insert_query);
     // print_r($insert_query);die;
     

@@ -90,6 +90,8 @@ function copyToClipboard() {
       success: function(response) {
         if (response.status === 'success') {
           $('#verification-message').text('Verification successful!');
+          $.get('booking.php', function() {
+          });
         } else {
           $('#verification-message').text('Verification failed: ' + response.message);
         }

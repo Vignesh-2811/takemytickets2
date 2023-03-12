@@ -49,9 +49,12 @@ if mail_id_list:
         
                 
         for line in lines:
-            if line.lower().startswith("> to:"):
+             if "To:" in line:
                 to_address = line.strip().split("<")[-1].strip(">")
                 ticket_info['to'] = to_address
+            # if line.lower().startswith("to:"):
+                # to_address = line.strip().split("<")[-1].strip(">")
+                # ticket_info['to'] = to_address
 
         for i, line in enumerate(lines):
             if "BOOKING ID:" in line:
@@ -76,17 +79,17 @@ if mail_id_list:
             if "Quantity" in line:
                 quantity_line = lines[i+2].strip()
                 # quantity = quantity_line.split('> ')[1]
-                ticket_info['quantity'] = quantity_line
+                ticket_info['quantity'] = int(quantity_line)
 
         for i, line in enumerate(lines):
             if "Total amount paid" in line:
                 amount_paid_line = lines[i].strip()
-                # amount_paid = amount_paid_line.split('₹')[1] 
-                ticket_info['amount_paid'] = amount_paid_line
+                amount_paid = amount_paid_line.split('₹')[1] 
+                ticket_info['amount_paid'] = float(amount_paid)
 
         # # print the dictionary
         # print(ticket_info)
-        # print(json.dumps(ticket_info))
+        print(json.dumps(ticket_info))
 
 else:
     print("No emails found from", value)

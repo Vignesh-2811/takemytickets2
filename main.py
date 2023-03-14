@@ -43,8 +43,7 @@ if mail_id_list:
         for line in lines:
             if "From: BookMyShow <tickets@bookmyshow.email>" in line:
                 ticket_info['from'] = "tickets@bookmyshow.email"
-        
-                
+                 
         for line in lines:
              if "To:" in line:
                 to_address = line.strip().split("<")[-1].strip(">")

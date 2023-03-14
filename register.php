@@ -37,6 +37,7 @@ session_start();
                     unset($_SESSION['message']);
                   }
                   ?>
+
                   <h5 class="card-title text-center pb-0 fs-4">Register Your Account</h5>
                 </div>
 
@@ -69,18 +70,12 @@ session_start();
 
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
-
     </section>
-
   </div>
 </main><!-- End #main -->
-
-
 
 <?php
 include "includes/footer.php";

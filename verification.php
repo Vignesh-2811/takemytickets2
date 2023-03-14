@@ -36,7 +36,6 @@ if(!isset($_SESSION['auth']))
                   <p style="opacity: 0.7">TakeMyTickets need to verify your ticket purchase. Make sure you forward the tickets from the mail ID you used to sign-up</p>
                 </div>
 
-
                 <div class="col-12">
                   <label for="yourevent" class="form-label"><i class="fa-thin fa-circle-1"></i>1. Copy our email address</label>
                   <div class="input-group">
@@ -47,28 +46,23 @@ if(!isset($_SESSION['auth']))
                       </button>
                     </div>
                   </div>
-
                 </div>
 
                 <div class="col-12">
                   <label for="ticketconfirm" class="form-label mt-3">2. Forward your ticket confirmation email</label>
                   <button class="btn btn-outline-dark" id="forwarded-btn" type="button" disabled>I've forwarded my tickets</button>
-
                 </div>
 
                 <div class="col-12">
                   <label for="verification-message" class="form-label mt-3">3. Verification</label>
                   <div id="verification-message" class="form-label mt-3"></div>
                 </div>
-
               </div>
 
               <div class="col-12">
                 <button class="btn btn-primary w-100" type="submit" name="continue_btn" disabled>Continue</button>
               </div>
-
               </form>
-
 
             </div>
           </div>
@@ -79,9 +73,7 @@ if(!isset($_SESSION['auth']))
         </div>
       </div>
   </div>
-
   </section>
-
   </div>
 </main><!-- End #main -->
 

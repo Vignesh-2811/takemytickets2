@@ -30,78 +30,69 @@
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- Alertify JS -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
 
   <!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 
-
-<!-- FA Icons -->
+  <!-- FA Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-5h5H8W5t5cGjK9Qqlh7JTF8xC+GzLZ0xx+2yaybVUjxE6h65JvI+9fZap7TGZmH6UJmV83x/hD3y4+bJ/VF6pA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-5h5H8W5t5cGjK9Qqlh7JTF8xC+GzLZ0xx+2yaybVUjxE6h65JvI+9fZap7TGZmH6UJmV83x/hD3y4+bJ/VF6pA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<!-- jquery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="assets/js/verify.js"></script>
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="assets/js/verify.js"></script>
 
-
-<style>
-    .form-control{
+  <style>
+    .form-control {
       border: 1px solid #B3A1A1 !important;
       padding: 8px 10px;
     }
-    .form-select{
+
+    .form-select {
       border: 1px solid #B3A1A1 !important;
       padding: 8px 10px;
 
     }
-
   </style>
 
-<script>
+  <script>
+    function copyToClipboard() {
+      var copyText = document.getElementById("myText");
+      copyText.select();
+      document.execCommand("copy");
+      $('#forwarded-btn').prop('disabled', false);
+      alertify.set('notifier', 'position', 'bottom-center');
+      alertify.success('Mail ID Copied!');
 
+    }
 
-function copyToClipboard() {
-  var copyText = document.getElementById("myText");
-  copyText.select();
-  document.execCommand("copy");
-  $('#forwarded-btn').prop('disabled', false);
-  alertify.set('notifier','position', 'bottom-center');
-  alertify.success('Mail ID Copied!');
-
-}
-
-      
-      // Send verification request and display message
-      $(document).ready(function() {
-  $('#forwarded-btn').click(function() {
-    $('#verification-message').text('Please keep this page open and allow 1-2 mins to TakeMyTickets to verify your tickets');
-    $.ajax({
-      url: 'verify.php',
-      dataType: 'json',
-      success: function(response) {
-        if (response.status === 'success') {
-          $('#verification-message').text('Successfully Verified');
-          $.get('booking.php', function() {
-          });
-        } else {
-          $('#verification-message').text('Verification failed: ' + response.message);
-        }
-      },
-      error: function() {
-        $('#verification-message').text('Verification failed.');
-      },
-      complete: function() {
-        $('#loader').hide();
-      }
+    // Send verification request and display message
+    $(document).ready(function() {
+      $('#forwarded-btn').click(function() {
+        $('#verification-message').text('Please keep this page open and allow 1-2 mins to TakeMyTickets to verify your tickets');
+        $.ajax({
+          url: 'verify.php',
+          dataType: 'json',
+          success: function(response) {
+            if (response.status === 'success') {
+              $('#verification-message').text('Successfully Verified');
+              $.get('booking.php', function() {});
+            } else {
+              $('#verification-message').text('Verification failed: ' + response.message);
+            }
+          },
+          error: function() {
+            $('#verification-message').text('Verification failed.');
+          },
+          complete: function() {
+            $('#loader').hide();
+          }
+        });
+      });
     });
-  });
-});
-
-
-
-</script>
+  </script>
 </head>
 
 <body>

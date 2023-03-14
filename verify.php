@@ -19,7 +19,6 @@ $idexist= false;
 
 $_SESSION['to'] = $ticket_info['to'];
 $_SESSION['booking_id'] = $ticket_info['booking_id'];
-// $_SESSION['venue'] = $ticket_info['venue'];
 $_SESSION['category'] = $ticket_info['category'];
 $_SESSION['quantity'] = $ticket_info['quantity'];
 $_SESSION['amount_paid'] = $ticket_info['amount_paid'];

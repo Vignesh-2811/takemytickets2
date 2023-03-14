@@ -4,6 +4,13 @@ include "includes/header.php";
 include "functions/myfunctions.php";
 ?>
 
+<?php
+if(!isset($_SESSION['auth']))
+{
+    redirect("login.php",'Login to continue');
+}
+?>
+
   <main>
     <div class="container">
 

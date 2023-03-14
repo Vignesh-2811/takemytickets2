@@ -31,22 +31,7 @@ if(!isset($_SESSION['auth']))
 
                     <div class="col-12">
                       <label for="yourevent" class="form-label">Which event do you want to sell tickets for?</label>
-                        <select name="event_id" id="" class="form-select mb-2" required>
-                        <?php
-                            $events = getAll("venues");
-
-                            if(mysqli_num_rows($events) > 0 ){
-                                foreach ($events as $item) {
-                                    ?>
-                                    <option value = "<?= $item['venue'];?>, <?= $item['city']; ?>"><?= $item['venue']; ?>, <?= $item['city']; ?></option>
-                                    <?php 
-                                }
-                            }
-                            else{
-                                echo "No event available";
-                            }
-                        ?>
-                        </select>
+                       <input type="text" name = "event_name" class="form-control mb-2">
                     </div>
 
                     <div class="col-12">

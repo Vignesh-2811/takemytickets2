@@ -19,7 +19,7 @@ $idexist= false;
 
 $_SESSION['to'] = $ticket_info['to'];
 $_SESSION['booking_id'] = $ticket_info['booking_id'];
-$_SESSION['venue'] = $ticket_info['venue'];
+// $_SESSION['venue'] = $ticket_info['venue'];
 $_SESSION['category'] = $ticket_info['category'];
 $_SESSION['quantity'] = $ticket_info['quantity'];
 $_SESSION['amount_paid'] = $ticket_info['amount_paid'];
@@ -47,6 +47,9 @@ if ($ticket_info['from'] != 'tickets@bookmyshow.email') {
 } else if ($idexist === true) {
     $response['status'] = 'error';
     $response['message'] = "This ticket is already listed";
+} else if($ticket_info['venue'] != $_SESSION['venue']) {
+    $response['status'] = 'error';
+    $response['message'] = "List the tickets to correct event";
 } else {
         $response['status'] = 'success';
 }

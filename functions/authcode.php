@@ -111,7 +111,7 @@ if (isset($_POST['register_btn'])) {
     }
 } else if (isset($_POST['continue_btn'])) {
 
-    $venue = mysqli_real_escape_string($conn, $_POST['event_id']);
+    $venue = mysqli_real_escape_string($conn, $_POST['event_name']);
     $tickets = mysqli_real_escape_string($conn, $_POST['tickets']);
     $type = mysqli_real_escape_string($conn, $_POST['type']);
 

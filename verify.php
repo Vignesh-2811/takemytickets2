@@ -34,12 +34,12 @@ if(mysqli_stmt_num_rows($stmt_check_booking_id) > 0) {
     $idexist= true;
 }
 
-if ($ticket_info['from'] != 'tickets@bookmyshow.email') {
-    $response['status'] = 'error';
-    $response['message'] = "Please list a valid ticket";
-} else if($ticket_info['to'] != $email) {
+if($ticket_info['to'] != $email) {
     $response['status'] = 'error';
     $response['message'] = "Login / Signup with the to email address in the email";
+} else if ($ticket_info['from'] != 'tickets@bookmyshow.email') {
+    $response['status'] = 'error';
+    $response['message'] = "Please list a valid ticket";
 } else if ($ticket_info['quantity'] < $quantity) {
     $response['status'] = 'error';
     $response['message'] = "Mismatch in ticket quantity";
